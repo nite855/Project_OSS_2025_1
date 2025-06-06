@@ -2,9 +2,12 @@ from budget import Budget
 
 
 def main():
+    print("가계부 시작중...")
     budget = Budget()
-
+    print()
+    
     while True:
+        
         print("==== 간단 가계부 ====")
         print("1. 지출 추가")
         print("2. 지출 목록 보기")
@@ -20,8 +23,13 @@ def main():
             except ValueError:
                 print("잘못된 금액입니다.\n")
                 continue
+            if(budget.cheak_consume(amount)) :
+                print("입력 종료...")
+                continue
+            
+            budget.limit_count(amount)
             budget.add_expense(category, description, amount)
-
+            
         elif choice == "2":
             budget.list_expenses()
 
